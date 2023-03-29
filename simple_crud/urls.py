@@ -15,18 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework.routers import DefaultRouter
 
-from measurements.serializers import SensorDetailSerializer
-from measurements.views import SensorViewSet, MeasurementViewSet
-
-r = DefaultRouter()
-r.register('sensor', SensorViewSet)
-r.register('measurements', MeasurementViewSet)
+from measurements.views import SensorViewSet, MeasurementViewSet, SensorDetailViewSet
 
 
-# TODO: настройте роутер и подключите `ProjectViewSet` и `MeasurementViewSet`
+app_name = 'measurements'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-] + r.urls
+    path('sensor/', SensorViewSet.as_view()),
+    path('sensor/<pk>/', SensorDetailViewSet.as_view()),
+    path('measurements/', MeasurementViewSet.as_view()),
+]

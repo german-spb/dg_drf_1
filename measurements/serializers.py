@@ -1,8 +1,5 @@
-# TODO: опишите сериализаторы
 from rest_framework import serializers
-
 from .models import Sensor, Measurement
-
 
 class SensorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,7 +9,7 @@ class SensorSerializer(serializers.ModelSerializer):
 class MeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measurement
-        fields = ['value', 'created_at']
+        fields = ['sensor', 'temperature', 'created_at']
 
 
 class SensorDetailSerializer(serializers.ModelSerializer):
@@ -20,5 +17,5 @@ class SensorDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
        model = Sensor
-       fields = ['id','name','measurements']
+       fields = ['id','name','description','measurements']
 
